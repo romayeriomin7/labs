@@ -1,7 +1,7 @@
 users = {
-    "admin": {"password": "123", "grades": [10, 11, 4, 12, 5]},
-    "user1": {"password": "qwerty", "grades": [3, 2, 4, 5, 8]},
-    "petro": {"password": "pass", "grades": [6, 7, 8, 9, 10]},
+    "vasyl": {"password": "123", "grades": [10, 11, 4, 12, 5]},
+    "nazar": {"password": "456", "grades": [3, 2, 4, 5, 8]},
+    "petro": {"password": "789", "grades": [6, 7, 8, 9, 10]},
     "olga": {"password": "777", "grades": [2, 12, 4, 9, 5]}
 }
 
@@ -13,7 +13,7 @@ if login in users and users[login]["password"] == password:
 
     user_grades = users[login]["grades"]
     print("Ваші оцінки:", user_grades)
-и
+
     good_count = 0  # для оцінок від 5 до 12
     bad_count = 0  # для оцінок від 1 до 4
 
