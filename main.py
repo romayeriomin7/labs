@@ -1,31 +1,16 @@
-print("Hello World")
+# This is a sample Python script.
 
-name = "Roman" #str-порядок
-age = 16 #int-ціле число
-height = 1.78 #float-робове число
-student = True #bool-true or false
+# Press Shift+F10 to execute it or replace it with your code.
+# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
 
-numbers = [1, 2, 3] #list-список
-coordinates = (10, 20) #tuple-незмінні
-unique = {1, 2, 3}
-person = { "name" : "Roman",  "age" : 16 }
 
-print(name, type(name))
-print(age, type(age))
-print(height, type(height))
-print(student, type(student))
-print(numbers, type(numbers))
-print(coordinates, type(coordinates))
-print(unique, type(unique))
-print(person, type(person))
+def print_hi(name):
+    # Use a breakpoint in the code line below to debug your script.
+    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-a = 10
-b = 3
 
-print("Додавання (+):", a + b)
-print("Віднімання (-):", a - b)
-print("Множення (*):", a * b)
-print("Ділення (/):", a / b)
-print("Остача від ділення (%):", a % b)
-print("Цілочисельне ділення (//):", a // b)
-print("Піднесення до степеня (**):", a ** b)
+# Press the green button in the gutter to run the script.
+if __name__ == '__main__':
+    print_hi('PyCharm')
+
+# See PyCharm help at https://www.jetbrains.com/help/pycharm/
