@@ -52,17 +52,17 @@ def add_to_cart(catalog: Dict[int, Dict[str, Any]], cart: Dict[int, Dict[str, An
     try:
         item_id: int = int(input("\nВведіть ID товару: "))
         if item_id not in catalog:
-            print_log("Товару з таким ID не існує.", prefix="❌")
+            print_log("Товару з таким ID не існує.")
             return
 
         item: Dict[str, Any] = catalog[item_id]
         if item['stock'] <= 0:
-            print_log("Цього товару немає в наявності.", prefix="❌")
+            print_log("Цього товару немає в наявності.")
             return
 
         qty: int = int(input(f"Введіть кількість (доступно {item['stock']}): "))
         if qty <= 0:
-            print_log("Кількість має бути більше 0.", prefix="❌")
+            print_log("Кількість має бути більше 0.")
             return
 
         current_in_cart: int = cart.get(item_id, {}).get('qty', 0)
@@ -74,10 +74,10 @@ def add_to_cart(catalog: Dict[int, Dict[str, Any]], cart: Dict[int, Dict[str, An
             "item": item,
             "qty": current_in_cart + qty
         }
-        print_log(f"Додано {qty} шт. '{item['name']}' до кошика.", prefix="✅")
+        print_log(f"Додано {qty} шт. '{item['name']}' до кошика.")
 
     except ValueError:
-        print_log("Введіть коректне число!", prefix="❌")
+        print_log("Введіть коректне число!")
 
 
 def show_cart(cart: Dict[int, Dict[str, Any]]) -> bool:
@@ -108,17 +108,17 @@ def remove_from_cart(cart: Dict[int, Dict[str, Any]]) -> None:
         item_id: int = int(input("\nВведіть ID товару для видалення: "))
         if item_id in cart:
             removed = cart.pop(item_id)
-            print_log(f"Товар '{removed['item']['name']}' видалено з кошика.", prefix="✅")
+            print_log(f"Товар '{removed['item']['name']}' видалено з кошика.")
         else:
-            print_log("Цього товару немає у кошику.", prefix="❌")
+            print_log("Цього товару немає у кошику.")
     except ValueError:
-        print_log("Введіть коректне число!", prefix="❌")
+        print_log("Введіть коректне число!")
 
 
 def checkout(catalog: Dict[int, Dict[str, Any]], cart: Dict[int, Dict[str, Any]]) -> None:
     """Списує товари зі складу та оформлює покупку."""
     if not cart:
-        print_log("Кошик порожній. Немає чого купувати.", prefix="❌")
+        print_log("Кошик порожній. Немає чого купувати.")
         return
 
     show_cart(cart)
@@ -130,7 +130,7 @@ def checkout(catalog: Dict[int, Dict[str, Any]], cart: Dict[int, Dict[str, Any]]
 
         total: float = calculate_total(cart)
         cart.clear()
-        print_log(f"Дякуємо за покупку! Оплачено: {format_price(total)}", prefix="🎉")
+        print_log(f"Дякуємо за покупку! Оплачено: {format_price(total)}")
     else:
         print("Покупку скасовано.")
 
@@ -139,7 +139,7 @@ def admin_panel(catalog: Dict[int, Dict[str, Any]], admin_pass: str = "admin123"
     """Панель адміністратора для перегляду залишків."""
     entered_pass: str = input("\nВведіть пароль адміністратора: ")
     if entered_pass != admin_pass:
-        print_log("Невірний пароль!", prefix="❌")
+        print_log("Невірний пароль!")
         return
 
     while True:
@@ -155,7 +155,7 @@ def admin_panel(catalog: Dict[int, Dict[str, Any]], admin_pass: str = "admin123"
             # Використання лямбда-функції для сортування за залишком
             sorted_items = sorted(catalog.values(), key=lambda x: x['stock'])
             for item in sorted_items:
-                status = "🔴 КРИТИЧНО" if item['stock'] < 3 else "🟢 OK"
+                status = " КРИТИЧНО" if item['stock'] < 3 else " OK"
                 print(
                     f"ID: {item['id']:<2} | {item['name']:<20} | Ціна: {format_price(item['price']):<12} | Залишок: {item['stock']:<3} шт. [{status}]")
 
@@ -166,19 +166,19 @@ def admin_panel(catalog: Dict[int, Dict[str, Any]], admin_pass: str = "admin123"
                     new_stock: int = int(input(f"Новий залишок для '{catalog[item_id]['name']}': "))
                     if new_stock >= 0:
                         catalog[item_id]['stock'] = new_stock
-                        print_log("Залишок успішно оновлено.", prefix="✅")
+                        print_log("Залишок успішно оновлено.")
                     else:
-                        print_log("Залишок не може бути від'ємним.", prefix="❌")
+                        print_log("Залишок не може бути від'ємним.")
                 else:
-                    print_log("Товар не знайдено.", prefix="❌")
+                    print_log("Товар не знайдено.")
             except ValueError:
-                print_log("Введіть коректне число!", prefix="❌")
+                print_log("Введіть коректне число!")
 
         elif choice == "0":
             print("Вихід з панелі адміністратора...")
             break
         else:
-            print_log("Невірний вибір.", prefix="❌")
+            print_log("Невірний вибір.")
 
 
 def run_app() -> None:
@@ -213,10 +213,10 @@ def run_app() -> None:
         elif choice == "9":
             admin_panel(catalog)
         elif choice == "0":
-            print_log("Дякуємо, що завітали! До побачення.", prefix="\n👋")
+            print_log("Дякуємо, що завітали! До побачення.")
             break
         else:
-            print_log("Невірний вибір, спробуйте ще раз.", prefix="❌")
+            print_log("Невірний вибір, спробуйте ще раз."3)
 
 
 #точка входу в програму
